@@ -1,0 +1,238 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * - Keep every @import in this top block, above @theme and the rest of the file. Install an
+ *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
+ *   build resolves @import from the filesystem. Load those with a <link> in the head() of
+ *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: "Archivo nocturno" — night forest greens from the channel banner,
+ * aged-parchment text, ochre gold titles and the red of the channel's thumbnails.
+ */
+
+@theme inline {
+  --font-display: "Anton", "Impact", sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Source Serif 4", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-ember: var(--ember);
+  --color-parchment: var(--parchment);
+  --color-parchment-foreground: var(--parchment-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.165 0.018 155);
+  --foreground: oklch(0.93 0.03 85);
+  --card: oklch(0.205 0.02 155);
+  --card-foreground: oklch(0.93 0.03 85);
+  --popover: oklch(0.205 0.02 155);
+  --popover-foreground: oklch(0.93 0.03 85);
+  --primary: oklch(0.74 0.12 72);
+  --primary-foreground: oklch(0.18 0.02 60);
+  --secondary: oklch(0.25 0.022 155);
+  --secondary-foreground: oklch(0.93 0.03 85);
+  --muted: oklch(0.23 0.018 155);
+  --muted-foreground: oklch(0.72 0.03 85);
+  --accent: oklch(0.58 0.21 27);
+  --accent-foreground: oklch(0.97 0.01 85);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.97 0.01 85);
+  --border: oklch(0.93 0.03 85 / 12%);
+  --input: oklch(0.93 0.03 85 / 18%);
+  --ring: oklch(0.74 0.12 72);
+
+  --whatsapp: oklch(0.58 0.21 27);
+  --whatsapp-foreground: oklch(0.97 0.01 85);
+  --ember: oklch(0.58 0.21 27);
+  --parchment: oklch(0.9 0.04 85);
+  --parchment-foreground: oklch(0.2 0.02 60);
+
+  --gradient-night: radial-gradient(
+    ellipse at 20% 0%,
+    oklch(0.28 0.04 150 / 70%) 0%,
+    transparent 55%
+  ),
+    radial-gradient(ellipse at 90% 30%, oklch(0.3 0.08 60 / 35%) 0%, transparent 50%),
+    var(--background);
+  --gradient-fade-down: linear-gradient(to bottom, transparent, var(--background));
+  --gradient-image-veil: linear-gradient(
+    to top,
+    oklch(0.12 0.015 155 / 95%) 0%,
+    oklch(0.12 0.015 155 / 40%) 55%,
+    transparent 100%
+  );
+  --shadow-print: 0 30px 60px -20px oklch(0 0 0 / 70%), 0 0 0 1px oklch(0.93 0.03 85 / 10%);
+  --shadow-glow: 0 0 40px -6px oklch(0.74 0.12 72 / 45%);
+  --shadow-whatsapp: 0 12px 30px -8px oklch(0.58 0.21 27 / 55%);
+
+  --chart-1: oklch(0.74 0.12 72);
+  --chart-2: oklch(0.58 0.21 27);
+  --chart-3: oklch(0.72 0.17 150);
+  --chart-4: oklch(0.9 0.04 85);
+  --chart-5: oklch(0.5 0.05 155);
+  --sidebar: oklch(0.205 0.02 155);
+  --sidebar-foreground: oklch(0.93 0.03 85);
+  --sidebar-primary: oklch(0.74 0.12 72);
+  --sidebar-primary-foreground: oklch(0.18 0.02 60);
+  --sidebar-accent: oklch(0.25 0.022 155);
+  --sidebar-accent-foreground: oklch(0.93 0.03 85);
+  --sidebar-border: oklch(0.93 0.03 85 / 12%);
+  --sidebar-ring: oklch(0.74 0.12 72);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--gradient-night);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+@utility image-veil {
+  background: var(--gradient-image-veil);
+}
+
+@utility fade-down {
+  background: var(--gradient-fade-down);
+}
+
+@utility shadow-print {
+  box-shadow: var(--shadow-print);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility shadow-whatsapp {
+  box-shadow: var(--shadow-whatsapp);
+}
+
+@utility rule-ochre {
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  height: 1px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.58 0.21 27 / 55%);
+  }
+  70% {
+    box-shadow: 0 0 0 18px oklch(0.58 0.21 27 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.58 0.21 27 / 0%);
+  }
+}
+
+@utility animate-rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@utility animate-whatsapp-pulse {
+  animation: whatsapp-pulse 2.4s ease-out infinite;
+}
